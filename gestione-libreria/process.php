@@ -10,6 +10,10 @@
 
         $sqlInsert = "INSERT INTO libri (titolo, autore, anno_pubblicazione, genere, description) VALUES (?, ?, ?, ?,?)";
         $stmt = $pdo->prepare($sqlInsert);
+        
+        if (empty($titolo) || empty($autore) || empty($anno_pubblicazione) || empty($genere) || empty($description)) {
+            die("Please fill in all the fields");
+        }
         if ($stmt->execute([$titolo, $autore, $anno_pubblicazione , $genere, $description])) {
             session_start();
             $_SESSION["create"] = "Book added successfully!";

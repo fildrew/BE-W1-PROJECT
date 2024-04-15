@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>4</title>
+<title>BOOK SEARCH</title>
 <link rel="stylesheet" href="../main.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -36,15 +36,12 @@
 
                     if (isset($_GET['search'])) {
                         $search = $_GET['search'];
-                        
-                        // Prepare the SQL statement with placeholders
-                        $sqlSelect = "SELECT * FROM libri WHERE titolo LIKE ? OR description LIKE ? OR autore LIKE ? OR genere LIKE ?";
-                        
-                        // Prepare and execute the statement with wildcard search parameters
+                        $sqlSelect = "SELECT* FROM libri WHERE titolo LIKE ?  OR autore LIKE ? OR genere LIKE ? OR anno_pubblicazione LIKE ?";
+                       
                         $stmt = $pdo->prepare($sqlSelect);
                         $stmt->execute(["%$search%", "%$search%", "%$search%", "%$search%"]);
                         
-                        // Fetch the results
+                    
                         $libri = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         
                         if ($libri) {

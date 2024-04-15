@@ -19,16 +19,16 @@
         
         <form action="process.php" method="post">
             <div class="form-elemnt my-4 shadow">
-                <input type="text" class="form-control" name="titolo" placeholder="Book Title:">
+                <input type="text" id="titolo"  class="form-control" name="titolo" placeholder="Book Title:">
             </div>
             <div class="form-elemnt my-4 shadow">
-                <input type="text" class="form-control" name="autore" placeholder="Author Name:">
+                <input type="text" id="autore" class="form-control" name="autore" placeholder="Author Name:">
             </div>
             <div class="form-element my-4 shadow ">
-                <textarea name="anno_pubblicazione"  class="form-control" placeholder="First Published:"></textarea>
+                <input type="number" id="anno_pubblicazione" class="form-control"  name="anno_pubblicazione" placeholder="First Published:">
             </div>
             <div class="form-elemnt my-4 shadow">
-                <select name="genere" id="" class="form-control">
+                <select name="genere" id="genere" class="form-control">
                     <option value="">Select Book Type:</option>
                     <option value="Adventure">Adventure</option>
                     <option value="Crime">Crime</option>
@@ -39,7 +39,9 @@
             
             <div class="form-element my-4 shadow ">
                 <textarea name="description"  class="form-control" placeholder="Book Description:"></textarea>
+                
             </div>
+            
             <div class="form-element my-4">
                 <input type="submit" name="create" value="Add Book" class="btn btn-primary  shadow rounded-pill">
             </div>
