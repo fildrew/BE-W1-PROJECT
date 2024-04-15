@@ -7,13 +7,28 @@
         $anno_pubblicazione = $_POST["anno_pubblicazione"];
         $genere = $_POST["genere"];
         $description = $_POST["description"];
+        
+        $error = [];
+        
+        if (strlen($anno_pubblicazione) > 4) {
+            $errors['anno_pubblicazione'][] = 'Anno non valido';
+        }
+        
+        if (strlen($titolo) < 3) {
+            $errors['titolo'][] = 'Titolo non valido';
+        }
+        
+        if (strlen($autore) < 3) {
+            $errors['autore'][] = 'Autore non valido';
+        }
+
+        if (strlen($description) < 3) {
+            $errors['description'][] = 'Descrizione non valida';
+        }
 
         $sqlInsert = "INSERT INTO libri (titolo, autore, anno_pubblicazione, genere, description) VALUES (?, ?, ?, ?,?)";
         $stmt = $pdo->prepare($sqlInsert);
         
-        if (empty($titolo) || empty($autore) || empty($anno_pubblicazione) || empty($genere) || empty($description)) {
-            die("Please fill in all the fields");
-        }
         if ($stmt->execute([$titolo, $autore, $anno_pubblicazione , $genere, $description])) {
             session_start();
             $_SESSION["create"] = "Book added successfully!";
